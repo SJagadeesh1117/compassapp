@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F0F1A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.3"
+            android:text="COMPASS"
+            android:textColor="#E94560"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:letterSpacing="0.08"
+            android:text="Telugu  •  English  •  Tamil"
+            android:textColor="#6C7086"
+            android:textSize="11sp" />
+
+        <com.compass.app.CompassView
+            android:id="@+id/compassView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="14dp" />
+
+        <!-- Direction Names Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/direction_card_bg"
+            android:orientation="vertical"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="14dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="64dp" android:layout_height="wrap_content"
+                    android:text="ENGLISH" android:textColor="#6C7086" android:textSize="10sp"
+                    android:letterSpacing="0.1" android:fontFamily="sans-serif-condensed" />
+                <TextView android:id="@+id/tvEnglish" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="North" android:textColor="#CDD6F4" android:textSize="24sp"
+                    android:fontFamily="sans-serif-medium" android:textAlignment="textEnd" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="#20CDD6F4" android:layout_marginVertical="10dp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="64dp" android:layout_height="wrap_content"
+                    android:text="TELUGU" android:textColor="#6C7086" android:textSize="10sp"
+                    android:letterSpacing="0.1" android:fontFamily="sans-serif-condensed" />
+                <TextView android:id="@+id/tvTelugu" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Uttaram" android:textColor="#F38BA8" android:textSize="24sp"
+                    android:fontFamily="sans-serif-medium" android:textAlignment="textEnd" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="#20CDD6F4" android:layout_marginVertical="10dp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="64dp" android:layout_height="wrap_content"
+                    android:text="TAMIL" android:textColor="#6C7086" android:textSize="10sp"
+                    android:letterSpacing="0.1" android:fontFamily="sans-serif-condensed" />
+                <TextView android:id="@+id/tvTamil" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Vadakku" android:textColor="#CBA6F7" android:textSize="24sp"
+                    android:fontFamily="sans-serif-medium" android:textAlignment="textEnd" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Vastu Entrance Rating Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/vastu_rating_bg"
+            android:orientation="vertical"
+            android:paddingHorizontal="18dp"
+            android:paddingVertical="14dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="MAIN ENTRANCE VASTU"
+                    android:textColor="#6C7086" android:textSize="10sp"
+                    android:letterSpacing="0.15" android:fontFamily="sans-serif-condensed" />
+                <!-- Colored indicator bar on right -->
+                <View android:id="@+id/vastuIndicator"
+                    android:layout_width="8dp" android:layout_height="8dp"
+                    android:background="@drawable/ic_launcher_background" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+                <TextView android:id="@+id/tvVastuStars"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="★★★★★" android:textColor="#A6E3A1" android:textSize="18sp" />
+                <TextView android:id="@+id/tvVastuLabel"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="  EXCELLENT" android:textColor="#A6E3A1" android:textSize="13sp"
+                    android:fontFamily="sans-serif-condensed" android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvVastuAdvice"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Northeast brings health, wealth and success."
+                android:textColor="#9399B2" android:textSize="12sp"
+                android:lineSpacingMultiplier="1.3" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:text="Point phone toward the main entrance / door"
+            android:textAlignment="center"
+            android:textColor="#45475A"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>

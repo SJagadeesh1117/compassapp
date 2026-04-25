@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F0F1A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="14dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-condensed"
+            android:letterSpacing="0.2"
+            android:text="VASTU PROPERTY GUIDE"
+            android:textColor="#E94560"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Everything to check before buying land / flat / home"
+            android:textColor="#6C7086"
+            android:textSize="11sp" />
+
+        <!-- Section 1: Entrance Direction Guide -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="#1E1E2E"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="#313244"
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="MAIN ENTRANCE DIRECTION"
+                    android:textColor="#E94560" android:textSize="12sp"
+                    android:fontFamily="sans-serif-condensed" android:textStyle="bold"
+                    android:letterSpacing="0.15" />
+
+                <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" android:layout_marginBottom="10dp"
+                    android:text="Which way should your main door face?"
+                    android:textColor="#6C7086" android:textSize="11sp" />
+
+                <!-- Dynamically filled -->
+                <LinearLayout android:id="@+id/containerDirections"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Section 2: Room Placement -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#1E1E2E"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="#313244"
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="IDEAL ROOM POSITIONS"
+                    android:textColor="#E94560" android:textSize="12sp"
+                    android:fontFamily="sans-serif-condensed" android:textStyle="bold"
+                    android:letterSpacing="0.15" />
+
+                <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" android:layout_marginBottom="10dp"
+                    android:text="Where should each room be in the house?"
+                    android:textColor="#6C7086" android:textSize="11sp" />
+
+                <!-- Dynamically filled -->
+                <LinearLayout android:id="@+id/containerRooms"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Section 3: Property Visit Checklist -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#1E1E2E"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="#313244"
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="PROPERTY VISIT CHECKLIST"
+                    android:textColor="#E94560" android:textSize="12sp"
+                    android:fontFamily="sans-serif-condensed" android:textStyle="bold"
+                    android:letterSpacing="0.15" />
+
+                <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp" android:layout_marginBottom="10dp"
+                    android:text="Tick items when visiting a property"
+                    android:textColor="#6C7086" android:textSize="11sp" />
+
+                <!-- Dynamically filled by fragment -->
+                <LinearLayout android:id="@+id/containerChecklist"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Section 4: Quick Tips -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="#1E1E2E"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="#313244"
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="QUICK VASTU TIPS"
+                    android:textColor="#E94560" android:textSize="12sp"
+                    android:fontFamily="sans-serif-condensed" android:textStyle="bold"
+                    android:letterSpacing="0.15" />
+
+                <LinearLayout android:id="@+id/containerTips"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

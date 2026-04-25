@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_compass"
+        android:icon="@drawable/ic_nav_compass"
+        android:title="Compass" />
+    <item
+        android:id="@+id/nav_room"
+        android:icon="@drawable/ic_nav_room"
+        android:title="Room Check" />
+    <item
+        android:id="@+id/nav_guide"
+        android:icon="@drawable/ic_nav_guide"
+        android:title="Vastu Guide" />
+</menu>
