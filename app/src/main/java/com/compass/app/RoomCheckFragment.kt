@@ -2,10 +2,12 @@ package com.compass.app
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.chip.Chip
@@ -20,6 +22,10 @@ class RoomCheckFragment : Fragment() {
     private var selectedRoomIndex = 0
     private var lastAzimuth = 0f
 
+    private var currentAccuracy = SensorManager.SENSOR_STATUS_ACCURACY_HIGH
+    private var currentPitch = 0f
+    private var currentRoll = 0f
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRoomCheckBinding.inflate(inflater, container, false)
         return binding.root
@@ -28,10 +34,64 @@ class RoomCheckFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buildRoomChips()
+        
         sensorViewModel.azimuth.observe(viewLifecycleOwner) { azimuth ->
             lastAzimuth = azimuth
             updateDisplay(azimuth)
         }
+
+        sensorViewModel.pitch.observe(viewLifecycleOwner) { pitch ->
+            currentPitch = pitch
+            binding.compassViewRoom.pitch = pitch
+            updateAlerts()
+        }
+
+        sensorViewModel.roll.observe(viewLifecycleOwner) { roll ->
+            currentRoll = roll
+            binding.compassViewRoom.roll = roll
+            updateAlerts()
+        }
+
+        sensorViewModel.accuracy.observe(viewLifecycleOwner) { accuracy ->
+            currentAccuracy = accuracy
+            updateAlerts()
+        }
+
+        binding.btnShowCalibrationGuide.setOnClickListener {
+            showCalibrationDialog()
+        }
+    }
+
+    private fun updateAlerts() {
+        val isAccuracyLow = currentAccuracy == SensorManager.SENSOR_STATUS_UNRELIABLE ||
+                            currentAccuracy == SensorManager.SENSOR_STATUS_ACCURACY_LOW
+
+        val isTilted = kotlin.math.abs(currentPitch) > 15f || kotlin.math.abs(currentRoll) > 15f
+
+        if (isAccuracyLow) {
+            binding.layoutAlertContainer.visibility = View.VISIBLE
+            binding.layoutAccuracyAlert.visibility = View.VISIBLE
+            binding.layoutTiltAlert.visibility = View.GONE
+        } else if (isTilted) {
+            binding.layoutAlertContainer.visibility = View.VISIBLE
+            binding.layoutAccuracyAlert.visibility = View.GONE
+            binding.layoutTiltAlert.visibility = View.VISIBLE
+        } else {
+            binding.layoutAlertContainer.visibility = View.GONE
+            binding.layoutAccuracyAlert.visibility = View.GONE
+            binding.layoutTiltAlert.visibility = View.GONE
+        }
+    }
+
+    private fun showCalibrationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("How to Calibrate Compass")
+            .setMessage("1. Hold the phone firmly in your hand.\n\n" +
+                        "2. Move your phone in the air in a figure-8 (infinity symbol ♾️) motion.\n\n" +
+                        "3. Do this motion 2 or 3 times while rotating the phone slightly along its axes.\n\n" +
+                        "This helps the magnetic sensor map and compensate for internal and external magnetic interference.")
+            .setPositiveButton("Got it", null)
+            .show()
     }
 
     private fun buildRoomChips() {

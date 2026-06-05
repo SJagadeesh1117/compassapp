@@ -49,6 +49,86 @@
 
         </HorizontalScrollView>
 
+        <!-- Dynamic Alert Banner Container -->
+        <FrameLayout
+            android:id="@+id/layoutAlertContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:visibility="gone">
+
+            <!-- Accuracy Alert Box -->
+            <LinearLayout
+                android:id="@+id/layoutAccuracyAlert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/alert_accuracy_bg"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚠️ LOW COMPASS ACCURACY"
+                    android:textColor="#F38BA8"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:letterSpacing="0.1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Wave your phone in a figure-8 pattern to calibrate the sensor."
+                    android:textColor="#F38BA8"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btnShowCalibrationGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Learn how to calibrate ➔"
+                    android:textColor="#CBA6F7"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- Tilt Alert Box -->
+            <LinearLayout
+                android:id="@+id/layoutTiltAlert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/alert_tilt_bg"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📱 HOLD PHONE FLAT"
+                    android:textColor="#FAB387"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:letterSpacing="0.1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Hold your device level (like a physical compass) to get accurate Vastu readings."
+                    android:textColor="#FAB387"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </FrameLayout>
+
         <!-- Mini compass -->
         <com.compass.app.CompassView
             android:id="@+id/compassViewRoom"

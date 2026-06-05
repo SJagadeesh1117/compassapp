@@ -18,6 +18,24 @@ class CompassView @JvmOverloads constructor(
             invalidate()
         }
 
+    var pitch: Float = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var roll: Float = 0f
+        set(value) {
+            field = value
+            invalidate()
+        }
+
+    var isCameraMode: Boolean = false
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     // --- Paints ---
 
     private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -87,6 +105,16 @@ class CompassView @JvmOverloads constructor(
         strokeWidth = 2.5f
     }
 
+    private val bubbleTargetPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.parseColor("#313244")
+        style = Paint.Style.STROKE
+        strokeWidth = 2.5f
+    }
+
+    private val bubblePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.FILL
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
@@ -103,7 +131,8 @@ class CompassView @JvmOverloads constructor(
         intercardinalLabelPaint.textSize = intercardinalSize
         degreePaint.textSize = degreeSize
 
-        // Background circle
+        // Background circle (translucent in camera/AR mode)
+        bgPaint.color = if (isCameraMode) Color.parseColor("#700F0F1A") else Color.parseColor("#16213E")
         canvas.drawCircle(cx, cy, r, bgPaint)
 
         // === ROTATING COMPASS ROSE ===
@@ -190,6 +219,36 @@ class CompassView @JvmOverloads constructor(
         val centerR = r * 0.22f
         canvas.drawCircle(cx, cy, centerR, centerBgPaint)
         canvas.drawCircle(cx, cy, centerR, centerRingPaint)
+
+        // === BUBBLE LEVEL DRAWING ===
+        val maxAngle = 15f
+        val bubbleR = centerR * 0.25f
+        val maxDist = centerR - bubbleR
+
+        // Calculate raw offsets (bubble moves to the higher side)
+        var dx = -(roll / maxAngle) * maxDist
+        var dy = -(pitch / maxAngle) * maxDist
+
+        // Clamp bubble to centerR boundary
+        val dist = sqrt(dx * dx + dy * dy)
+        if (dist > maxDist) {
+            dx = (dx / dist) * maxDist
+            dy = (dy / dist) * maxDist
+        }
+
+        // Draw inner target ring
+        canvas.drawCircle(cx, cy, centerR * 0.35f, bubbleTargetPaint)
+
+        // Choose color based on whether phone is level/flat (threshold is < 4 degrees tilt)
+        val tiltAngle = sqrt(pitch * pitch + roll * roll)
+        if (tiltAngle < 4f) {
+            bubblePaint.color = Color.parseColor("#80A6E3A1") // Transparent Neon Green
+        } else {
+            bubblePaint.color = Color.parseColor("#80FAB387") // Transparent Peach/Orange
+        }
+
+        // Draw the level bubble
+        canvas.drawCircle(cx + dx, cy + dy, bubbleR, bubblePaint)
 
         // Degree text in center
         val degText = "${azimuth.toInt()}°"
